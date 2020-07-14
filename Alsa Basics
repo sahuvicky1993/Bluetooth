@@ -1,0 +1,17 @@
+> ALSA stands for the Advanced Linux Sound Architecture
+> A Typical Sound Application
+Programs that use the PCM interface generally follow this pseudo-code:
+  open interface for capture or playback
+  set hardware parameters
+  (access mode, data format, channels, rate, etc.)
+  while there is data to be processed:
+     read PCM data (capture)
+     or write PCM data (playback)
+  close interface
+  
+> Mono and Stereo
+One digital value is called sample. More samples are collected to frames (frame is terminology for ALSA) depending on count of 
+converters used at one specific time. One frame might contain one sample (when only one converter is used - mono) or more samples 
+(for example: stereo has signals from two converters recorded at same time). Digital audio stream contains collection of frames 
+recorded at boundaries of continuous time periods.
+
