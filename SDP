@@ -1,0 +1,3 @@
+> A2DP sink the uuid is 110B, for A2DP source 110A for AVRCP target 110C and for AVRCP controller 110E.
+> service discovery to an A2DP sink
+SDP 00:07:80:81:66:6f 110B
