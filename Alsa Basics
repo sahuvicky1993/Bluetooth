@@ -15,3 +15,6 @@ converters used at one specific time. One frame might contain one sample (when o
 (for example: stereo has signals from two converters recorded at same time). Digital audio stream contains collection of frames 
 recorded at boundaries of continuous time periods.
 
+> Sound card
+Sound cards use a digital-to-analog converter (DAC), which converts recorded or generated digital signal data into an analog format.
+the sound card uses an analog-to-digital converter to digitize this signal.
