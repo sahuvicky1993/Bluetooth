@@ -1,0 +1,21 @@
+> SECURE SIMPLE PAIRING
+There are five phases of Secure Simple Pairing: 
+• Phase 1: Public key exchange
+• Phase 2: Authentication Stage 1
+• Phase 3: Authentication Stage 2
+• Phase 4: Link key calculation
+• Phase 5: LMP Authentication and Encryption
+> Public key exchange
+ Generate DH key
+ > Authentication Stage 1
+  Numeric Comparison, Out-of-Band, and Passkey Entry. The Just Works association model shares the  Numeric Comparison 
+  protocol and does not have a separate protocol.
+    The Out-of-Band Protocol is used when authentication information has been 
+    received by at least one of the devices and indicated in the OOB Authentication 
+    Data Present parameter in the LMP IO capability exchange sequence.
+    The Passkey Entry protocol is used when LMP IO capability exchange 
+    sequence indicates that Passkey Entry shall be used.
+ > Authentication Stage 2
+  identical in all three protocols.
+  Each device computes a new confirmation value that includes the previously exchanged values and the newly derived shared key
+  
