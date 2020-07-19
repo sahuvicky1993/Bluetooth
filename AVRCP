@@ -1,0 +1,13 @@
+https://www.silabs.com/documents/public/application-notes/AN986.pdf
+Absolute Volume
+AVRCP 1.4
+Browsing
+AVRCP 1.4
+Browsing is done over a separate L2CAP channel, which is opened after the regular AVRCP channel has
+been established. All regular AVRCP commands will still be sent over the regular AVRCP channel. The
+browsing channel is only used for retrieving information about media on the Target device;
+Every item on a browsing-capable player has a unique 128-bit UID that is valid over both AVRCP channels.
+Any item discovered over the browsing channel can be addressed with regular AVRCP PDUs (for example,
+PDU 0x74, PLAY_ITEM) by using the discovered UID.
+Connect Browsing channel -> CONNECT 1 AVRCP 1b
+
