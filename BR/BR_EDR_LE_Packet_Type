@@ -1,0 +1,9 @@
+BR/EDR generic packet structure (PAGE 210)
+  Channel Access Code | Packet Header | Guard & Sync(EDR Only) | Payload Header | Payload Body | MIC | CRC
+  
+LE generic packet structure (page 211)
+  LE radio operation is based on three PHYs (LE 1M. 2M, LE Coded) and makes use of two modulation schemes (1 Msym/s, 2 Msym/s modulation).
+  
+  
+  
+  
