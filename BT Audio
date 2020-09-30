@@ -1,0 +1,19 @@
+Design Overview:
+Bluetooth Designs With High-Quality Audio
+REF:https://www.electronicdesign.com/technologies/communications/article/21753031/brighten-up-your-bluetooth-designs-with-highquality-audio
+
+SCO data Rate: 64 kbps
+eSCO data Rate: As much as 288 Kbps
+
+How to select Packet Type
+  The specific packet type used is typically left up to the link manager firmware in the BT chip set, though there is a way to select a specific 
+  type. Bluetooth defines four packet types for transmitting SCO data. Check Spec
+  HV1 packets, while producing better error recovery than other types, accomplish this by consuming the entire bandwidth of a Bluetooth 1.1 connection.
+  
+Error Detection and Correction
+  BT packet contains an access code, a header, and a payload. While a 1/3 forward-error-correction (FEC) code and an error-checking code protect the 
+  header, low signal strength or local interference may result in a packet arriving with an invalid header. In this case, the entire packet is discarded. 
+  Because there's no mechanism to request retransmission of an SCO packet, the data is simply lost.
+  But in Case of eSCO (@ enhacement over SCO)
+    1> packet contains a CRC code used to check the data's validity
+    2> if an error is detected, the receiving device may be able to request retransmission of the faulty data.
