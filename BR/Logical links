@@ -1,0 +1,11 @@
+BR/EDR logical links
+  ACL-C and ASB-C (carry BR/EDR LMP signaling)
+  ACL-U and ASB-U (carry all asynchronous and isochronous framed user data.)
+  SCO-S/eSCO-S (Synchronous (SCO-S) and extended synchronous (eSCO-S) logical links are used to support isochronous data delivered in a 
+  stream without framing.)
+  
+LE logical links
+  Control logical link (LE-C)
+  User asynchronous logical link (LE-U)
+  Advertising Broadcast Control logical link (ADVB-C)
+  Advertising Broadcast User Data logical link (ADVB-U)
