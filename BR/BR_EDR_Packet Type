@@ -1,0 +1,5 @@
+ The packets are ID, NULL, POLL, FHS , DM1 ;
+ Item                                    | Communication                                                          | Payload                                                                | Status | Time           | Application
+FHS (DC:55:83:FE:D7:56) packet (Paging) | Master: DC:55:83:FE:D7:56 <-> Slave: "JBL TUNE160BT" F4:BC:DA:11:00:11 | 20 bytes (5B 43 B6 8E 5A 5D FB 97 83 55 DC 0C 02 5A E2 72 BD 04 17 68) | OK     | 70.981 364 375 | Baseband   
+Item                     | Communication                                                          | Payload                     | Status | Time           | Application
+DM1 Unit (ACL-C, 1 Mbps) | Master: DC:55:83:FE:D7:56 <-> Slave: "JBL TUNE160BT" F4:BC:DA:11:00:11 | 6 bytes (4A 09 1D 00 BE 02) | OK     | 70.986 364 250 | LMP        
