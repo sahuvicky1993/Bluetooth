@@ -33,3 +33,4 @@ Paging steps (Int by Master)
  6> The destination & source then switch to the source channel parameters. 
  The Connection state starts with a POLL packet sent by the master to verify that slave has switched to the master's timing and channel frequency 
  hopping. The slave can respond with any type of packet.
+ Ref (https://www.amd.e-technik.uni-rostock.de/ma/gol/lectures/wirlec/bluetooth_info/baseband.html)
