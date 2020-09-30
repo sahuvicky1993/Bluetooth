@@ -19,3 +19,17 @@ There are five phases of Secure Simple Pairing:
   identical in all three protocols.
   Each device computes a new confirmation value that includes the previously exchanged values and the newly derived shared key
   
+> INQUERY and PAGING
+Inquery steps
+ 1> The inquiry procedure involve a unit (the source) sending out inquiry packets (inquiry state) and then receiving the inquiry reply
+ 2> The unit that receives the inquiry packets (the destination), will hopefully be in the inquiry scan state to receive the inquiry packets.
+ 3> The destination will then enter the inquiry response state and send an inquiry reply to the source.
+Paging steps (Int by Master)
+ 1> A device (the source) (Page State) pages another device (the destination ).
+ 2> The destination (In Page Scan state) receives the page.
+ 3> The destination sends a reply to the source. (Slave Response state)
+ 4> The source sends an FHS packet to the destination (	Master Response state)
+ 5> The destination sends it's second reply to the source
+ 6> The destination & source then switch to the source channel parameters. 
+ The Connection state starts with a POLL packet sent by the master to verify that slave has switched to the master's timing and channel frequency 
+ hopping. The slave can respond with any type of packet.
