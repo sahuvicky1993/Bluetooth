@@ -17,3 +17,6 @@ Error Detection and Correction
   But in Case of eSCO (@ enhacement over SCO)
     1> packet contains a CRC code used to check the data's validity
     2> if an error is detected, the receiving device may be able to request retransmission of the faulty data.
+
+All about SCO/eSCO transport
+https://bluekitchen-gmbh.com/btstack/chipsets/
