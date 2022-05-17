@@ -24,6 +24,12 @@ Inquery steps
  1> The inquiry procedure involve a unit (the source) sending out inquiry packets (inquiry state) and then receiving the inquiry reply
  2> The unit that receives the inquiry packets (the destination), will hopefully be in the inquiry scan state to receive the inquiry packets.
  3> The destination will then enter the inquiry response state and send an inquiry reply to the source.
+Inqury procedure by Inquiring device (Master)
+ When commanded to enter the inquiry state, the master device starts to transmit, using 16 of the 32 channels used for inquiries. During every 
+ even numbered slot it transmits two ID packets on two different channels, and during the following slot it listens on those two channels for a 
+ slave's response (an FHS packet = BDadress + clock_offset). In the next two slots it uses the next two channels, so the hopping sequence (of 16 channels) 
+ repeats every 10ms (16 slots). The 16 slot sequence must be repeated at least 256 times (i.e. for at least 2.56 seconds) before switching to the other set 
+ of 16 channels.
 Paging steps (Int by Master)
  1> A device (the source) (Page State) pages another device (the destination ).
  2> The destination (In Page Scan state) receives the page.
