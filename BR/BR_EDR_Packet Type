@@ -3,3 +3,67 @@
 FHS (DC:55:83:FE:D7:56) packet (Paging) | Master: DC:55:83:FE:D7:56 <-> Slave: "JBL TUNE160BT" F4:BC:DA:11:00:11 | 20 bytes (5B 43 B6 8E 5A 5D FB 97 83 55 DC 0C 02 5A E2 72 BD 04 17 68) | OK     | 70.981 364 375 | Baseband   
 Item                     | Communication                                                          | Payload                     | Status | Time           | Application
 DM1 Unit (ACL-C, 1 Mbps) | Master: DC:55:83:FE:D7:56 <-> Slave: "JBL TUNE160BT" F4:BC:DA:11:00:11 | 6 bytes (4A 09 1D 00 BE 02) | OK     | 70.986 364 250 | LMP        
+
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Baseband Packets type:
+A Bluetooth packet is called a BB_PDU (BaseBand Packet Data Unit). Each packet can be considered part of one logical link:
+Access Code + Header + Payload
+
+Header (54 bits). Actually consists of 18 bits, but each bit is transmitted three times.
+
+AM_ADDR (3-bits): Active Member Address, the address of the active slave to which this packet is directed or from which it is being sent. 
+                  An address of zero is reserved for a "broadcast" message to all active slaves.
+TYPE (4 bits): Type code; definition is different for ACL and SCO links.
+FLOW (1 bit): Flow control over the ACL link; 0=stop, 1=go.
+ARQN (1 bit): Acknowledgement indication; 0=NAK, 1=ACK.
+SEQN (1 bit): Sequence number. This bit is toggled for consecutive packets.
+HEC (8 bits): Header Error Check, an integrity check value calculated from the other 10-bits of the header.
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ACL packets
+The packet type is determined by the TYPE code in the header and the currently selected packet type table (as selected by the LMP_packet_type_table_req message).
+
+Packet type table 0 (default):
+
+0000	NULL	1 slot	No payload. Used for acknowledgements or flow control.
+0001	POLL	1 slot	No payload. Used by the master to poll slaves. Requires acknowledgement.
+0010	FHS	1 slot	Frequency Hopping Sequence. Contains address, clock, etc. information.
+0011	DM1	1 slot	Data, Medium rate	(2/3 rate FEC)	maximum 17 data bytes.
+0100	DH1	1 slot	Data, High rate	(no error correction)	maximum 27 data bytes.
+1001	AUX1	1 slot	Like DH1, but without a CRC; maximum 29 data bytes. Should not be used.
+1010	DM3	3 slots	Data, Medium rate	(2/3 rate FEC)	maximum 121 data bytes.
+1011	DH3	3 slots	Data, High rate	(no error correction)	maximum 183 data bytes.
+1110	DM5	5 slots	Data, Medium rate	(2/3 rate FEC)	maximum 224 data bytes.
+1111	DH5	5 slots	Data, High rate	(no error correction)	maximum 339 data bytes.
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Packet type table 1 (added to support Enhanced Data Rate modulation, at 2 or 3 MBit/sec):
+
+0000	NULL	1 slot	No payload. Used for acknowledgements or flow control.
+0001	POLL	1 slot	No payload. Used by the master to poll slaves. Requires acknowledgement.
+0010	FHS	1 slot	Frequency Hopping Sequence. Contains address, clock, etc. information.
+0011	DM1	1 slot	Data, Medium rate	(2/3 rate FEC)	maximum 17 data bytes.	 
+0100	2-DH1	1 slot	Data, High rate	(no error correction)	maximum 54 data bytes,	using 2 MBit/sec modulation.
+1000	3-DH1	1 slot	Data, High rate	(no error correction)	maximum 83 data bytes,	using 3 MBit/sec modulation.
+1001	AUX1	1 slot	Like DH1, but without a CRC; maximum 29 data bytes. Should not be used.
+1010	2-DH3	3 slots	Data, High rate	(no error correction)	maximum 367 data bytes,	using 2 MBit/sec modulation.
+1011	3-DH3	3 slots	Data, High rate	(no error correction)	maximum 552 data bytes,	using 3 MBit/sec modulation.
+1110	2-DH5	5 slots	Data, High rate	(no error correction)	maximum 679 data bytes,	using 2 MBit/sec modulation.
+1111	3-DH5	5 slots	Data, High rate	(no error correction)	maximum 1021 data bytes,	using 3 MBit/sec modulation.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------
+
+eSCO (extended synchronous connection orientated) links
+Key facts:
+
+eSCO links were added in version 1.2 of the Bluetooth specification.
+Following a request from either the master or slave device, the master may establish an eSCO link to that device.
+eSCO packets are always transmitted in predetermined time slots: the regular interval between eSCO packets is specified when the link is established.
+eSCO packets can be 1 or 3 slots in length.
+eSCO packets to/from a specific slave are acknowledged, and may be retransmitted if not acknowledged.
+eSCO packets
+The packet type is determined by the TYPE code in the header:
+
+0000	NULL	No payload. Used for acknowledgements or flow control.
+0001	POLL	No payload. Used by the master to poll slaves. Requires acknowledgement.
+0111	EV3	Extended Voice (no error correction), 1 slot: maximum 30 data bytes plus a 16-bit CRC.
+1100	EV4	Extended Voice (2/3 rate FEC), 3 slots: maximum 120 data bytes plus a 16-bit CRC.
+1101	EV5	Extended Voice (no error correction), 3 slots: maximum 180 data bytes plus a 16-bit CRC.
