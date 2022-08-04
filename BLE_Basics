@@ -1,0 +1,12 @@
+GATT: How to exchange all profile and user data over a BLE connection.
+GATT uses the Attribute Protocol as its transport protocol to exchange data between devices. This data is organized hierarchically in sections called services, which 
+group conceptually related pieces of user data called characteristics. This determines many fundamental aspects of GATT
+
+GATT defines a few procedures for discovering the services from a GATT database located on a GATT Server. These procedures rely on Attribute Protocol (ATT) operations.
+One of those procedures is the Discover All Primary Services, which uses ATT’s Read By Group Type request/response.
+The parameters for this request are:
+
+- The starting and the ending handle for the search.
+- The attribute type which is the UUID searched for.
+In order to discover all primary services, you need to set the starting handle to 0x0001, the ending handle to 0xFFFF (these are the minimum and maximum values for 
+attribute handles, so the search will be performed over the entire database) and the attribute type to 0x2800, which is the UUID for the <<Primary Service>> declaration
