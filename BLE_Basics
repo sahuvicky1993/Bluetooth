@@ -21,12 +21,16 @@ The response from the Server will include a list of tuples corresponding to foun
 
 - The attribute handle where the requested declaration was found (where UUID is equal to 0x2800)
 - The so-called end-group handle – the last attribute handle before a new similar declaration is found, basically the last attribute that belongs to this service
-- The attribute value of the declaration; this is the service UUID of the found service (the service type, e.g. Heart Rate Service); it may be a 16-bit, a 32-bit or a 128-bit UUID
+- The attribute value of the declaration; this is the service UUID of the found service (the service type, e.g. Heart Rate Service); it may be a 16-bit, a 32-bit or 
+a 128-bit UUID
 The end-group handle is useful for two things.
 
-One is to know the borders of each service, i.e. not only where it starts, but also where it ends. Keep in mind that attribute handles are not necessarily consecutive, so the start of a new service may very well not be equal to the end of the previous service plus one.
+One is to know the borders of each service, i.e. not only where it starts, but also where it ends. Keep in mind that attribute handles are not necessarily consecutive,
+so the start of a new service may very well not be equal to the end of the previous service plus one.
 
-The other use is that obviously not all services can be sent in a single response if there are many services on the Server. The Server only sends as many as it can fit in the ATT packet. So the Client must continue the search, but for the next request he will not set the starting handle parameter to 0x0001, but instead it will set it to the last end-group handle from the previous response, plus one.
+The other use is that obviously not all services can be sent in a single response if there are many services on the Server. The Server only sends as many as it can fit
+in the ATT packet. So the Client must continue the search, but for the next request he will not set the starting handle parameter to 0x0001, but instead it will set it
+to the last end-group handle from the previous response, plus one.
 
 For example, let’s say the Server has this database structure (UUIDs are purely fictional):
 
@@ -43,6 +47,7 @@ The Client, upon seeing that the last service in this list ended at 0x0009, proc
 
 The response will only include Service 3, so the Client will need to issue a third request with the range: 0x0019-0xFFFF.
 
-After the third response, the Client will continue with a 4th request, with the range: 0x0031-0xFFFF. This time, it will get an Error Response with message “Attribute Not Found”.
+After the third response, the Client will continue with a 4th request, with the range: 0x0031-0xFFFF. This time, it will get an Error Response with message 
+“Attribute Not Found”.
 
 Thus, it can safely conclude that Primary Service Discovery is complete.
