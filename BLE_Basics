@@ -51,3 +51,11 @@ After the third response, the Client will continue with a 4th request, with the 
 “Attribute Not Found”.
 
 Thus, it can safely conclude that Primary Service Discovery is complete.
+
+>>>>> ATT opcodes >>>>>>>>
+ATT_FIND_INFORMATION_REQ      : used to obtain the mapping of attribute handles with their associated types. This allows a client to discover the list of attributes 
+                                and their types on a server
+ATT_FIND_BY_TYPE_VALUE_REQ    : used to obtain the handles of attributes that have a 16-bit UUID attribute type and attribute value.This allows the range of handles 
+                                associated with a given attribute to be discovered when the attribute type determines the grouping of a set of attributes
+ATT_READ_BY_TYPE_REQ          : used to obtain the values of attributes where the attribute type is known but the handle is not kown
+ATT_READ_REQ                  : used to request the server to read the value of an attribute and return its value in an ATT_READ_RSP PDU
